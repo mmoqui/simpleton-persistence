@@ -3,21 +3,21 @@
  *
  * <h2>Exported public API</h2>
  * <ul>
- *   <li>{@code io.github.jdbcprocessor.annotation} — {@code @JdbcRepository},
+ *   <li>{@code io.simpleton.persistence.annotation} — {@code @JdbcRepository},
  *       {@code Repository<T,ID>}, {@code RepositoryFactory<R>},
  *       {@code ColumnDescriptor}</li>
- *   <li>{@code io.github.jdbcprocessor.mapper} — {@code EntityMapper<T>}</li>
+ *   <li>{@code io.simpleton.persistence.mapper} — {@code EntityMapper<T>}</li>
  * </ul>
  *
  * <h2>Usage in a modular project</h2>
  * The consuming module must:
  * <ol>
- *   <li>Declare {@code requires io.github.jdbcprocessor;}</li>
+ *   <li>Declare {@code requires io.simpleton.persistence;}</li>
  *   <li>Open the entity package to the framework so that
  *       {@code MethodHandles.privateLookupIn()} can access private fields:
- *       {@code opens com.example.entity to io.github.jdbcprocessor;}</li>
+ *       {@code opens com.example.entity to io.simpleton.persistence;}</li>
  *   <li>Open the generated repository package for the same reason:
- *       {@code opens com.example.repository to io.github.jdbcprocessor;}</li>
+ *       {@code opens com.example.repository to io.simpleton.persistence;}</li>
  * </ol>
  *
  * <h2>Annotation processor registration</h2>
@@ -25,11 +25,11 @@
  * {@code provides} so that {@code javac} discovers the processor automatically
  * in modular projects, without extra configuration.
  */
-module io.github.jdbcprocessor {
+module io.simpleton.persistence {
 
     // Public API
-    exports io.github.jdbcprocessor.annotation;
-    exports io.github.jdbcprocessor.mapper;
+    exports io.simpleton.persistence.annotation;
+    exports io.simpleton.persistence.mapper;
 
     // JDBC API (DataSource, Connection, PreparedStatement, ResultSet, etc.)
     requires java.sql;
@@ -45,5 +45,5 @@ module io.github.jdbcprocessor {
 
     // Register the annotation processor as a Java SPI service
     provides javax.annotation.processing.Processor
-            with io.github.jdbcprocessor.processor.JdbcRepositoryProcessor;
+            with io.simpleton.persistence.processor.JdbcRepositoryProcessor;
 }

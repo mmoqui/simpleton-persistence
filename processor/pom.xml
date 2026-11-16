@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.github.jdbcprocessor</groupId>
+        <groupId>io.simpleton.persistence</groupId>
         <artifactId>jdbc-annotation-processor-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -25,6 +25,13 @@
             <version>1.1.1</version>
             <optional>true</optional>
         </dependency>
+        <!-- JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -32,10 +39,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
                     <!--
                         Désactiver l'AP lors de la compilation du processeur lui-même
                         (évite la bootstrap circulaire).

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.github.jdbcprocessor</groupId>
+        <groupId>io.simpleton.persistence</groupId>
         <artifactId>jdbc-annotation-processor-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -16,7 +16,7 @@
     <dependencies>
         <!-- Le processeur (annotations + implémentation) -->
         <dependency>
-            <groupId>io.github.jdbcprocessor</groupId>
+            <groupId>io.simpleton.persistence</groupId>
             <artifactId>jdbc-annotation-processor</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -41,27 +41,32 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
                     <!-- Le processeur tourne sur ce module pour générer les Impl + Factory -->
                     <annotationProcessorPaths>
                         <path>
-                            <groupId>io.github.jdbcprocessor</groupId>
+                            <groupId>io.simpleton.persistence</groupId>
                             <artifactId>jdbc-annotation-processor</artifactId>
                             <version>${project.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <useModulePath>false</useModulePath>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <configuration>
+                            <!--
+                                Les tests sont compilés en patchant le module applicatif.
+                                H2 (JdbcDataSource implémente javax.naming.Referenceable)
+                                requiert que le module lise java.naming.
+                            -->
+                            <compilerArgs>
+                                <arg>--add-modules=java.naming</arg>
+                                <arg>--add-reads=io.simpleton.persistence.test=java.naming</arg>
+                            </compilerArgs>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

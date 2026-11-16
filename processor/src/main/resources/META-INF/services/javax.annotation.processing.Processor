@@ -1,1 +1,1 @@
-io.github.jdbcprocessor.processor.JdbcRepositoryProcessor
+io.simpleton.persistence.processor.JdbcRepositoryProcessor
