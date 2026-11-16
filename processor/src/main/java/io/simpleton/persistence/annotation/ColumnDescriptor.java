@@ -15,23 +15,23 @@ package io.simpleton.persistence.annotation;
  *                    from INSERT statements
  */
 public record ColumnDescriptor(
-        String fieldName,
-        String columnName,
-        boolean id,
-        boolean generated) {
+    String fieldName,
+    String columnName,
+    boolean id,
+    boolean generated) {
 
-    /** Shortcut: plain column (neither PK nor auto-generated). */
-    public static ColumnDescriptor of(String fieldName, String columnName) {
-        return new ColumnDescriptor(fieldName, columnName, false, false);
-    }
+  /** Shortcut: plain column (neither PK nor auto-generated). */
+  public static ColumnDescriptor of(String fieldName, String columnName) {
+    return new ColumnDescriptor(fieldName, columnName, false, false);
+  }
 
-    /** Shortcut: auto-generated primary key column. */
-    public static ColumnDescriptor id(String fieldName, String columnName) {
-        return new ColumnDescriptor(fieldName, columnName, true, true);
-    }
+  /** Shortcut: auto-generated primary key column. */
+  public static ColumnDescriptor id(String fieldName, String columnName) {
+    return new ColumnDescriptor(fieldName, columnName, true, true);
+  }
 
-    /** Shortcut: manually supplied primary key (not auto-generated). */
-    public static ColumnDescriptor idManual(String fieldName, String columnName) {
-        return new ColumnDescriptor(fieldName, columnName, true, false);
-    }
+  /** Shortcut: manually supplied primary key (not auto-generated). */
+  public static ColumnDescriptor idManual(String fieldName, String columnName) {
+    return new ColumnDescriptor(fieldName, columnName, true, false);
+  }
 }

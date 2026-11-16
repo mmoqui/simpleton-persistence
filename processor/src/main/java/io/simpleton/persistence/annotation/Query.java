@@ -49,9 +49,9 @@ import java.lang.annotation.Target;
  * }
  * }</pre>
  */
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.SOURCE)
-public @interface Query {
+  @Target(ElementType.METHOD)
+  @Retention(RetentionPolicy.SOURCE)
+  public @interface Query {
 
     /**
      * The SQL query to execute.
@@ -59,4 +59,4 @@ public @interface Query {
      * and named parameters prefixed with {@code :}.</p>
      */
     String value();
-}
+  }

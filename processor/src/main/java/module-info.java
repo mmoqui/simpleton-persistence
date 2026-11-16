@@ -27,23 +27,23 @@
  */
 module io.simpleton.persistence {
 
-    // Public API
-    exports io.simpleton.persistence.annotation;
-    exports io.simpleton.persistence.mapper;
+  // Public API
+  exports io.simpleton.persistence.annotation;
+  exports io.simpleton.persistence.mapper;
 
-    // JDBC API (DataSource, Connection, PreparedStatement, ResultSet, etc.)
-    requires java.sql;
+  // JDBC API (DataSource, Connection, PreparedStatement, ResultSet, etc.)
+  requires java.sql;
 
-    // Compiler mirror API, required by the annotation processor
-    requires java.compiler;
+  // Compiler mirror API, required by the annotation processor
+  requires java.compiler;
 
-    // JavaPoet — compile-time only (not required by consumers)
-    requires static com.squareup.javapoet;
+  // JavaPoet — compile-time only (not required by consumers)
+  requires static com.squareup.javapoet;
 
-    // Google Auto-Service — generates the SPI service file at processor compile time
-    requires static com.google.auto.service;
+  // Google Auto-Service — generates the SPI service file at processor compile time
+  requires static com.google.auto.service;
 
-    // Register the annotation processor as a Java SPI service
-    provides javax.annotation.processing.Processor
-            with io.simpleton.persistence.processor.JdbcRepositoryProcessor;
+  // Register the annotation processor as a Java SPI service
+  provides javax.annotation.processing.Processor
+      with io.simpleton.persistence.processor.JdbcRepositoryProcessor;
 }

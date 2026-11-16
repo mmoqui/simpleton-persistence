@@ -28,17 +28,17 @@
  */
 module io.simpleton.persistence.test {
 
-    requires io.simpleton.persistence;
-    requires java.sql;
+  requires io.simpleton.persistence;
+  requires java.sql;
 
-    // Opens required for MethodHandles.privateLookupIn()
-    //
-    // Without these directives the static VarHandle block in DefaultEntityMapper
-    // would throw an IllegalAccessException at class initialisation time.
+  // Opens required for MethodHandles.privateLookupIn()
+  //
+  // Without these directives the static VarHandle block in DefaultEntityMapper
+  // would throw an IllegalAccessException at class initialisation time.
 
-    /** Opens the entity package so the framework can access private fields of User and Product. */
-    opens io.simpleton.persistence.test.entity to io.simpleton.persistence;
+  /** Opens the entity package so the framework can access private fields of User and Product. */
+  opens io.simpleton.persistence.test.entity to io.simpleton.persistence;
 
-    /** Opens the repository package for the DefaultEntityMapper inner class. */
-    opens io.simpleton.persistence.test.repository to io.simpleton.persistence;
+  /** Opens the repository package for the DefaultEntityMapper inner class. */
+  opens io.simpleton.persistence.test.repository to io.simpleton.persistence;
 }

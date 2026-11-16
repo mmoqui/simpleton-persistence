@@ -2,72 +2,72 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>io.simpleton.persistence</groupId>
-        <artifactId>jdbc-annotation-processor-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
+  <parent>
+    <groupId>io.simpleton.persistence</groupId>
+    <artifactId>jdbc-annotation-processor-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>jdbc-annotation-processor-test</artifactId>
-    <name>JDBC Annotation Processor – Test App</name>
+  <artifactId>jdbc-annotation-processor-test</artifactId>
+  <name>JDBC Annotation Processor – Test App</name>
 
-    <dependencies>
-        <!-- Le processeur (annotations + implémentation) -->
-        <dependency>
-            <groupId>io.simpleton.persistence</groupId>
-            <artifactId>jdbc-annotation-processor</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <!-- H2 en mémoire pour les tests -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>2.2.224</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- JUnit 5 -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.10.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+  <dependencies>
+    <!-- Le processeur (annotations + implémentation) -->
+    <dependency>
+      <groupId>io.simpleton.persistence</groupId>
+      <artifactId>jdbc-annotation-processor</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <!-- H2 en mémoire pour les tests -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>2.2.224</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- JUnit 5 -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <!-- Le processeur tourne sur ce module pour générer les Impl + Factory -->
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>io.simpleton.persistence</groupId>
-                            <artifactId>jdbc-annotation-processor</artifactId>
-                            <version>${project.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>default-testCompile</id>
-                        <configuration>
-                            <!--
-                                Les tests sont compilés en patchant le module applicatif.
-                                H2 (JdbcDataSource implémente javax.naming.Referenceable)
-                                requiert que le module lise java.naming.
-                            -->
-                            <compilerArgs>
-                                <arg>--add-modules=java.naming</arg>
-                                <arg>--add-reads=io.simpleton.persistence.test=java.naming</arg>
-                            </compilerArgs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <!-- Le processeur tourne sur ce module pour générer les Impl + Factory -->
+          <annotationProcessorPaths>
+            <path>
+              <groupId>io.simpleton.persistence</groupId>
+              <artifactId>jdbc-annotation-processor</artifactId>
+              <version>${project.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+        <executions>
+          <execution>
+            <id>default-testCompile</id>
+            <configuration>
+              <!--
+                Les tests sont compilés en patchant le module applicatif.
+                H2 (JdbcDataSource implémente javax.naming.Referenceable)
+                requiert que le module lise java.naming.
+              -->
+              <compilerArgs>
+                <arg>--add-modules=java.naming</arg>
+                <arg>--add-reads=io.simpleton.persistence.test=java.naming</arg>
+              </compilerArgs>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>

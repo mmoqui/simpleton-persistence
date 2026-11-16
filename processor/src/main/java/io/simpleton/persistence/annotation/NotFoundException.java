@@ -18,12 +18,12 @@ package io.simpleton.persistence.annotation;
  */
 public class NotFoundException extends RuntimeException {
 
-    /**
-     * Constructs a new {@code NotFoundException} with a descriptive message.
-     *
-     * @param message human-readable description identifying the query and parameters
-     */
-    public NotFoundException(String message) {
-        super(message);
-    }
+  /**
+   * Constructs a new {@code NotFoundException} with a descriptive message.
+   *
+   * @param message human-readable description identifying the query and parameters
+   */
+  public NotFoundException(String message) {
+    super(message);
+  }
 }

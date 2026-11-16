@@ -66,7 +66,7 @@ import java.util.Map;
  *
  * @param <T> the entity type being mapped
  */
-public interface EntityMapper<T> {
+  public interface EntityMapper<T> {
 
     /**
      * Returns the ordered list of column descriptors for this entity.
@@ -119,4 +119,4 @@ public interface EntityMapper<T> {
      *         never {@code null} or empty
      */
     List<FieldValue> toFieldValues(T entity);
-}
+  }

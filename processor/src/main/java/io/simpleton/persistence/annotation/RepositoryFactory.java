@@ -16,10 +16,10 @@ package io.simpleton.persistence.annotation;
  */
 public interface RepositoryFactory<R> {
 
-    /**
-     * Creates a new repository instance.
-     * Implementations are stateless beyond the {@code DataSource}: each call
-     * is lightweight and may be invoked per request if needed.
-     */
-    R create();
+  /**
+   * Creates a new repository instance.
+   * Implementations are stateless beyond the {@code DataSource}: each call
+   * is lightweight and may be invoked per request if needed.
+   */
+  R create();
 }

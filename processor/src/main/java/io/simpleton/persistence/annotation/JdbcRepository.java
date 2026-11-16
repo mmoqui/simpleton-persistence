@@ -34,19 +34,19 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.SOURCE)
 public @interface JdbcRepository {
 
-    /**
-     * SQL table name.
-     * Defaults to the simple name of the entity (first generic parameter of
-     * {@link Repository}) when left blank.
-     */
-    String table() default "";
+  /**
+   * SQL table name.
+   * Defaults to the simple name of the entity (first generic parameter of
+   * {@link Repository}) when left blank.
+   */
+  String table() default "";
 
-    /**
-     * Custom mapper class to use.
-     * Must implement {@link EntityMapper}{@code <T>}.
-     * When omitted ({@link Void}{@code .class} default), the processor generates
-     * a default mapper from the {@code private} non-{@code transient} fields
-     * of the entity, using {@code VarHandle} for field access.
-     */
-    Class<?> mapper() default Void.class;
+  /**
+   * Custom mapper class to use.
+   * Must implement {@link EntityMapper}{@code <T>}.
+   * When omitted ({@link Void}{@code .class} default), the processor generates
+   * a default mapper from the {@code private} non-{@code transient} fields
+   * of the entity, using {@code VarHandle} for field access.
+   */
+  Class<?> mapper() default Void.class;
 }

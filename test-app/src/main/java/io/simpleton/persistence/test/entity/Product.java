@@ -27,31 +27,31 @@ package io.simpleton.persistence.test.entity;
  */
 public class Product {
 
-    private Long    id;
-    private String  label;
-    private Double  unitPrice;
-    private Integer stockQty;
+  private Long    id;
+  private String  label;
+  private Double  unitPrice;
+  private Integer stockQty;
 
-    public Product() {}
+  public Product() {}
 
-    public Product(String label, Double unitPrice, Integer stockQty) {
-        this.label     = label;
-        this.unitPrice = unitPrice;
-        this.stockQty  = stockQty;
-    }
+  public Product(String label, Double unitPrice, Integer stockQty) {
+    this.label     = label;
+    this.unitPrice = unitPrice;
+    this.stockQty  = stockQty;
+  }
 
-    public Long    getId()        { return id; }
-    public String  getLabel()     { return label; }
-    public Double  getUnitPrice() { return unitPrice; }
-    public Integer getStockQty()  { return stockQty; }
+  public Long    getId()        { return id; }
+  public String  getLabel()     { return label; }
+  public Double  getUnitPrice() { return unitPrice; }
+  public Integer getStockQty()  { return stockQty; }
 
-    public void setId(Long id)          { this.id = id; }
-    public void setLabel(String l)      { this.label = l; }
-    public void setUnitPrice(Double p)  { this.unitPrice = p; }
-    public void setStockQty(Integer q)  { this.stockQty = q; }
+  public void setId(Long id)          { this.id = id; }
+  public void setLabel(String l)      { this.label = l; }
+  public void setUnitPrice(Double p)  { this.unitPrice = p; }
+  public void setStockQty(Integer q)  { this.stockQty = q; }
 
-    @Override public String toString() {
-        return "Product{id=" + id + ", label='" + label +
-               "', unitPrice=" + unitPrice + ", stockQty=" + stockQty + '}';
-    }
+  @Override public String toString() {
+    return "Product{id=" + id + ", label='" + label +
+           "', unitPrice=" + unitPrice + ", stockQty=" + stockQty + '}';
+  }
 }

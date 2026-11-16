@@ -23,29 +23,29 @@ import java.util.Optional;
 @JdbcRepository(table = "users")
 public interface UserRepository extends Repository<User, Long> {
 
-    /** Returns all users whose age is strictly greater than {@code minAge}. */
-    @Query("SELECT u FROM users u WHERE u.age > :minAge")
-    List<User> findByAgeGreaterThan(int minAge);
+  /** Returns all users whose age is strictly greater than {@code minAge}. */
+  @Query("SELECT u FROM users u WHERE u.age > :minAge")
+  List<User> findByAgeGreaterThan(int minAge);
 
-    /**
-     * Returns users matching the given username.
-     * Returns an empty {@code Optional} when not found.
-     */
-    @Query("SELECT u FROM users u WHERE u.username = :username")
-    Optional<User> findByUsername(String username);
+  /**
+   * Returns users matching the given username.
+   * Returns an empty {@code Optional} when not found.
+   */
+  @Query("SELECT u FROM users u WHERE u.username = :username")
+  Optional<User> findByUsername(String username);
 
-    /**
-     * Returns the user with the given username.
-     * Throws {@link io.simpleton.persistence.annotation.NotFoundException}
-     * when no user matches.
-     */
-    @Query("SELECT u FROM users u WHERE u.username = :username")
-    User getByUsername(String username);
+  /**
+   * Returns the user with the given username.
+   * Throws {@link io.simpleton.persistence.annotation.NotFoundException}
+   * when no user matches.
+   */
+  @Query("SELECT u FROM users u WHERE u.username = :username")
+  User getByUsername(String username);
 
-    /**
-     * Returns users matching the given username prefix and minimum age,
-     * demonstrating multi-parameter queries.
-     */
-    @Query("SELECT u FROM users u WHERE u.username LIKE :pattern AND u.age >= :minAge")
-    List<User> findByUsernamePatternAndMinAge(String pattern, int minAge);
+  /**
+   * Returns users matching the given username prefix and minimum age,
+   * demonstrating multi-parameter queries.
+   */
+  @Query("SELECT u FROM users u WHERE u.username LIKE :pattern AND u.age >= :minAge")
+  List<User> findByUsernamePatternAndMinAge(String pattern, int minAge);
 }

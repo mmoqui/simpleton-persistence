@@ -19,10 +19,10 @@ package io.simpleton.persistence.annotation;
  * @param column the column descriptor (name, id flag, generated flag)
  * @param value  the runtime value for that column; may be {@code null}
  */
-public record FieldValue(ColumnDescriptor column, Object value) {
+  public record FieldValue(ColumnDescriptor column, Object value) {
 
     /** Convenience factory. */
     public static FieldValue of(ColumnDescriptor column, Object value) {
-        return new FieldValue(column, value);
+      return new FieldValue(column, value);
     }
-}
+  }

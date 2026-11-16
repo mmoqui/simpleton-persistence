@@ -30,44 +30,44 @@ import java.util.Map;
  */
 public final class ProductMapper implements EntityMapper<Product> {
 
-    private static final List<ColumnDescriptor> COLUMNS = List.of(
-            ColumnDescriptor.id("id",        "id"),
-            ColumnDescriptor.of("label",     "product_label"),
-            ColumnDescriptor.of("unitPrice", "unit_price"),
-            ColumnDescriptor.of("stockQty",  "stock_qty")
+  private static final List<ColumnDescriptor> COLUMNS = List.of(
+          ColumnDescriptor.id("id",        "id"),
+          ColumnDescriptor.of("label",     "product_label"),
+          ColumnDescriptor.of("unitPrice", "unit_price"),
+          ColumnDescriptor.of("stockQty",  "stock_qty")
+  );
+
+  @Override
+  public List<ColumnDescriptor> columns() {
+    return COLUMNS;
+  }
+
+  /**
+   * Builds a {@link Product} from a generic row map.
+   * Keys are SQL column names (lower-cased); values come from the back-end.
+   */
+  @Override
+  public Product toEntity(Map<String, Object> row) {
+    Product p = new Product();
+    p.setId(       (Long)    row.get("id"));
+    p.setLabel(    (String)  row.get("product_label"));
+    p.setUnitPrice((Double)  row.get("unit_price"));
+    p.setStockQty( (Integer) row.get("stock_qty"));
+    return p;
+  }
+
+  /**
+   * Returns all field values from the entity, paired with their descriptors.
+   * The back-end filters on {@link ColumnDescriptor#generated()} and
+   * {@link ColumnDescriptor#id()} flags to build the right statement.
+   */
+  @Override
+  public List<FieldValue> toFieldValues(Product p) {
+    return List.of(
+        FieldValue.of(COLUMNS.get(0), p.getId()),
+        FieldValue.of(COLUMNS.get(1), p.getLabel()),
+        FieldValue.of(COLUMNS.get(2), p.getUnitPrice()),
+        FieldValue.of(COLUMNS.get(3), p.getStockQty())
     );
-
-    @Override
-    public List<ColumnDescriptor> columns() {
-        return COLUMNS;
-    }
-
-    /**
-     * Builds a {@link Product} from a generic row map.
-     * Keys are SQL column names (lower-cased); values come from the back-end.
-     */
-    @Override
-    public Product toEntity(Map<String, Object> row) {
-        Product p = new Product();
-        p.setId(       (Long)    row.get("id"));
-        p.setLabel(    (String)  row.get("product_label"));
-        p.setUnitPrice((Double)  row.get("unit_price"));
-        p.setStockQty( (Integer) row.get("stock_qty"));
-        return p;
-    }
-
-    /**
-     * Returns all field values from the entity, paired with their descriptors.
-     * The back-end filters on {@link ColumnDescriptor#generated()} and
-     * {@link ColumnDescriptor#id()} flags to build the right statement.
-     */
-    @Override
-    public List<FieldValue> toFieldValues(Product p) {
-        return List.of(
-                FieldValue.of(COLUMNS.get(0), p.getId()),
-                FieldValue.of(COLUMNS.get(1), p.getLabel()),
-                FieldValue.of(COLUMNS.get(2), p.getUnitPrice()),
-                FieldValue.of(COLUMNS.get(3), p.getStockQty())
-        );
-    }
+  }
 }
